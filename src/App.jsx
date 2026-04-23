@@ -87,13 +87,18 @@ export default function App() {
       
       {/* 1. FIXED NAVBAR */}
       <Navbar 
-        wishlistCount={wishlist.length}
-        cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
-        onOpenWishlist={handleOpenWishlist}
-        onOpenPromos={handlePromos}
-        onOpenWhatsNew={handleWhatsNew}
-        onOpenCart={() => setIsCartOpen(true)}
-        setIsSearchOpen={setIsSearchOpen}
+       wishlistCount={wishlist.length}
+    cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+    onOpenWishlist={handleOpenWishlist}
+    onOpenPromos={handlePromos}
+    onOpenWhatsNew={handleWhatsNew}
+    onOpenCart={() => setIsCartOpen(true)}
+    isSearchOpen={isSearchOpen}
+    setIsSearchOpen={setIsSearchOpen}
+    currency={currency}
+    setCurrency={setCurrency}
+    searchQuery={searchQuery}
+    setSearchQuery={setSearchQuery}
       />
 
       {/* SEARCH OVERLAY  */}
