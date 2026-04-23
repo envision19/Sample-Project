@@ -83,22 +83,20 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white relative">
-      
-      {/* 1. FIXED NAVBAR */}
-      <Navbar 
-       wishlistCount={wishlist.length}
-    cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
-    onOpenWishlist={handleOpenWishlist}
-    onOpenPromos={handlePromos}
-    onOpenWhatsNew={handleWhatsNew}
-    onOpenCart={() => setIsCartOpen(true)}
-    isSearchOpen={isSearchOpen}
-    setIsSearchOpen={setIsSearchOpen}
-    currency={currency}
-    setCurrency={setCurrency}
-    searchQuery={searchQuery}
-    setSearchQuery={setSearchQuery}
+  <div className="min-h-screen bg-white text-black font-sans relative">
+    <Navbar 
+      wishlistCount={wishlist.length}
+      cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+      onOpenWishlist={handleOpenWishlist}
+      onOpenPromos={handlePromos}
+      onOpenWhatsNew={handleWhatsNew}
+      onOpenCart={() => setIsCartOpen(true)}
+      isSearchOpen={isSearchOpen}
+      setIsSearchOpen={setIsSearchOpen}
+      currency={currency}
+      setCurrency={setCurrency}
+      searchQuery={searchQuery}
+      setSearchQuery={setSearchQuery}
       />
 
       {/* SEARCH OVERLAY  */}

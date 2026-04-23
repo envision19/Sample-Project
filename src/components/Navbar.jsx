@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, Tag, Sparkles, Search, ShoppingBag, X, Globe } from 'lucide-react';
+import { Heart, Tag, Sparkles, Search, ShoppingBag, X } from 'lucide-react';
 
 const Navbar = ({ 
   wishlistCount, 
@@ -19,23 +19,24 @@ const Navbar = ({
     <header className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-[100] border-b border-gray-100">
       <nav className="flex items-center justify-between px-4 py-4 max-w-7xl mx-auto w-full h-16">
         
-        {/* LOGO - Hides when searching to make room */}
+        {/* LOGO - Hides when searching */}
         {!isSearchOpen && (
           <div className="flex-1 text-xl font-black tracking-tighter animate-in fade-in duration-300">
             ENVISION
           </div>
         )}
 
-        {/* MIDDLE SECTION: Swaps between Links and Search Input */}
+        {/* MIDDLE SECTION */}
         <div className={`flex items-center transition-all duration-300 ${isSearchOpen ? 'flex-1' : 'flex-none'}`}>
           {isSearchOpen ? (
+            /* INLINE SEARCH LINE */
             <div className="flex items-center w-full gap-4 animate-in slide-in-from-right-4 duration-300 border-b border-black pb-1">
-              <Search size={16} className="text-black" />
+              <Search size={16} />
               <input 
                 autoFocus
                 type="text"
                 placeholder="SEARCH COLLECTION..."
-                className="w-full bg-transparent outline-none text-xs font-bold tracking-widest uppercase placeholder:text-gray-300"
+                className="w-full bg-transparent outline-none text-xs font-bold tracking-widest uppercase"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -44,6 +45,7 @@ const Navbar = ({
               </button>
             </div>
           ) : (
+            /* NORMAL LINKS */
             <div className="flex gap-4 md:gap-8 items-center overflow-x-auto no-scrollbar px-4 animate-in fade-in duration-300">
               <button onClick={onOpenWishlist} className="flex items-center gap-1 md:gap-2 text-[9px] font-bold uppercase tracking-widest text-gray-500 hover:text-black shrink-0 relative">
                 <div className="relative">
@@ -62,24 +64,23 @@ const Navbar = ({
           )}
         </div>
 
-        {/* RIGHT SIDE: Currency, Search, and Cart */}
+        {/* RIGHT SIDE */}
         <div className="flex-1 flex items-center justify-end gap-3 md:gap-6">
           {!isSearchOpen && (
             <>
-              {/* CURRENCY CHANGER (USD/PHP Toggle) */}
+              {/* RESTORED CURRENCY STYLE */}
               <button 
                 onClick={() => setCurrency(currency === 'USD' ? 'PHP' : 'USD')}
-                className="flex items-center gap-1 text-[10px] font-black text-gray-400 hover:text-black transition-colors border border-gray-200 px-2 py-1 rounded"
+                className="text-[10px] font-black tracking-widest hover:underline transition-all"
               >
-                <Globe size={12} />
                 {currency}
               </button>
 
-              <button onClick={() => setIsSearchOpen(true)} className="p-1 hover:scale-110 transition-transform"><Search size={20} /></button>
+              <button onClick={() => setIsSearchOpen(true)} className="p-1"><Search size={20} /></button>
             </>
           )}
           
-          <button onClick={onOpenCart} className="relative p-1 hover:scale-110 transition-transform">
+          <button onClick={onOpenCart} className="relative p-1">
             <ShoppingBag size={20} />
             {cartCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold border border-white">
