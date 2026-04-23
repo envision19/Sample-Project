@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import ProductGrid from './components/ProductGrid';
 import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
+import { X } from 'lucide-react'; // Make sure lucide-react is installed
 
 const products = [
   { id: 1, name: 'Lunar Chronograph', price: 420, category: 'Accessories', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800' },
@@ -18,8 +19,9 @@ export default function App() {
   const [currency, setCurrency] = useState('USD');
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
-  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('ALL ITEMS');
+  const [searchQuery, setSearchQuery] = useState('');
   
   const exchangeRate = 56.50;
 
@@ -73,25 +75,51 @@ export default function App() {
     setCart((prev) => prev.filter((item) => item.id !== productId));
   };
 
-  // --- Filtering Logic ---
-  const filteredProducts = activeCategory === 'ALL ITEMS' 
-    ? products 
-    : products.filter(p => p.category.toUpperCase() === activeCategory);
+  // --- Filtering & Search Logic ---
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = activeCategory === 'ALL ITEMS' || p.category.toUpperCase() === activeCategory;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white relative">
+      
+      {/* 1. FIXED NAVBAR */}
       <Navbar 
-    
-          currency={currency}
-          setCurrency={setCurrency}
-          cartCount={cart.length}
-          wishlistCount={wishlist.length} // Make sure this variable exists
-          onOpenCart={() => setIsCartOpen(true)}
-          onOpenWishlist={() => setIsWishlistOpen(true)} // Check if you have this state
-          onOpenPromos={() => setIsPromosOpen(true)}
-          onOpenWhatsNew={() => setIsWhatsNewOpen(true)}
-
+        wishlistCount={wishlist.length}
+        cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+        onOpenWishlist={handleOpenWishlist}
+        onOpenPromos={handlePromos}
+        onOpenWhatsNew={handleWhatsNew}
+        onOpenCart={() => setIsCartOpen(true)}
+        setIsSearchOpen={setIsSearchOpen}
       />
+
+      {/* 2. FULL SCREEN SEARCH OVERLAY (Fixed Layout Fix) */}
+      {isSearchOpen && (
+        <div className="fixed inset-0 bg-white z-[100] flex flex-col animate-in fade-in zoom-in duration-200">
+          <div className="flex justify-between items-center px-6 py-8 border-b border-gray-100">
+            <span className="text-[10px] font-bold uppercase tracking-widest">Search Collection</span>
+            <button onClick={() => setIsSearchOpen(false)} className="hover:rotate-90 transition-transform">
+              <X size={24} />
+            </button>
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center px-6">
+            <input 
+              autoFocus
+              type="text" 
+              placeholder="Start typing..."
+              className="w-full max-w-4xl text-4xl md:text-7xl font-black uppercase tracking-tighter outline-none border-none placeholder:text-gray-100"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <p className="mt-8 text-gray-400 text-xs font-medium uppercase tracking-[0.3em]">
+              Found {filteredProducts.length} Results
+            </p>
+          </div>
+        </div>
+      )}
       
       <main>
         <Hero />
