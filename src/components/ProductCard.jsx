@@ -2,12 +2,12 @@ import React from 'react';
 import { Plus } from 'lucide-react';
 
 export default function ProductCard({ product, onAddToCart, currency, exchangeRate }) {
-  // 1. Logic for dynamic currency display
+  
   const displayPrice = currency === 'USD' 
     ? `$${product.price}` 
     : `₱${(product.price * exchangeRate).toLocaleString()}`;
 
-  // 2. Fallback for the missing Solis Lamp image
+  
   const imageUrl = product.image || 'https://images.unsplash.com/photo-1507473885765-e6ed457f7d1f?auto=format&fit=crop&q=80&w=800';
 
   return (

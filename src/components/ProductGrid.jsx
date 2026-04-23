@@ -8,7 +8,7 @@ export default function ProductGrid({
     exchangeRate, 
     activeCategory, 
     setActiveCategory, 
-    wishlist = [], // <--- Setting this to an empty array prevents the crash
+    wishlist = [], 
     onToggleWishlist
 }) {
   const categories = ['ALL ITEMS', 'FURNITURE', 'ACCESSORIES'];

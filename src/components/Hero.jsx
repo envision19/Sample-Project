@@ -17,18 +17,18 @@ export default function Hero() {
         New Collection 2026
       </div>
 
-      {/* Main Heading */}
+      
       <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 max-w-4xl leading-[0.9] animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150">
         High-end aesthetics for the modern home.
       </h1>
 
-      {/* Subtext */}
+      
       <p className="text-gray-500 text-base md:text-lg mb-12 max-w-xl font-light leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
         Carefully curated pieces designed to blend functionality with minimalist design. 
         Experience the art of living.
       </p>
 
-      {/* Action Buttons */}
+     
       <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
         {/* FIXED: Added onClick here */}
         <button 
@@ -38,7 +38,7 @@ export default function Hero() {
           Shop Collection
         </button>
         
-        {/* FIXED: Added a simple interaction here */}
+       
         <button 
           onClick={() => alert("The 2026 Lookbook is coming soon!")}
           className="bg-white border border-gray-200 text-black px-10 py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-gray-50 transition-all active:scale-95"

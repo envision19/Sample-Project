@@ -16,73 +16,89 @@ const Navbar = ({
   setSearchQuery
 }) => {
   return (
-    <header className="fixed top-0 left-0 w-full bg-white z-[100] border-b border-gray-100">
-      <nav className="flex items-center justify-between px-4 py-4 max-w-7xl mx-auto w-full h-16">
+    <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur-md z-[100] border-b border-gray-100">
+      <nav className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto w-full h-20 relative">
         
-        {/* LEFT SIDE: Currency & Logo */}
-        {!isSearchOpen && (
-          <div className="flex-1 flex items-center gap-4 animate-in fade-in duration-300">
-            <button 
-              onClick={() => setCurrency(currency === 'USD' ? 'PHP' : 'USD')}
-              className="text-[10px] font-black tracking-widest hover:text-gray-400 transition-colors shrink-0"
-            >
-              PHP/USD
-            </button>
-            <div className="text-xl font-black tracking-tighter">
-              ENVISION
-            </div>
+        {/* LEFT SIDE */}
+        <div className="flex-1 flex items-center gap-6">
+          <div className="text-2xl font-black tracking-tighter uppercase">
+            ENVISION
           </div>
-        )}
+          
+          {/* PHP | USD  */}
+          <div className="flex items-center gap-2 text-[10px] tracking-widest text-gray-400 font-medium">
+            <button 
+              onClick={() => setCurrency('PHP')}
+              className={`transition-all ${currency === 'PHP' ? 'text-black font-black scale-110' : 'hover:text-black'}`}
+            >
+              PHP
+            </button>
+            <span className="text-gray-200">|</span>
+            <button 
+              onClick={() => setCurrency('USD')}
+              className={`transition-all ${currency === 'USD' ? 'text-black font-black scale-110' : 'hover:text-black'}`}
+            >
+              USD
+            </button>
+          </div>
+        </div>
 
-        {/* MIDDLE SECTION: Inline Search Line */}
-        <div className={`flex items-center transition-all duration-300 ${isSearchOpen ? 'flex-1' : 'flex-none'}`}>
-          {isSearchOpen ? (
-            <div className="flex items-center w-full gap-4 animate-in slide-in-from-right-4 duration-300 border-b border-black pb-1">
-              <Search size={16} />
+        {/*  SEARCH bar */}
+        {isSearchOpen ? (
+          <div className="absolute inset-x-0 inset-y-0 bg-white/95 backdrop-blur-xl z-[110] flex items-center px-6 animate-in fade-in zoom-in duration-300">
+            <div className="flex items-center w-full max-w-2xl mx-auto gap-4">
+              <Search size={20} className="text-black" />
               <input 
                 autoFocus
                 type="text"
-                placeholder="SEARCH..."
-                className="w-full bg-transparent outline-none text-xs font-bold tracking-widest uppercase"
+                placeholder="SEARCH COLLECTION..."
+                className="w-full bg-transparent outline-none text-xl font-light tracking-[0.2em] uppercase placeholder:text-gray-200"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button onClick={() => {setIsSearchOpen(false); setSearchQuery('');}} className="p-1">
-                <X size={16} />
-              </button>
             </div>
-          ) : (
-            /* NORMAL LINKS */
-            <div className="flex gap-4 md:gap-8 items-center overflow-x-auto no-scrollbar px-4 animate-in fade-in duration-300">
-              <button onClick={onOpenWishlist} className="flex items-center gap-1 md:gap-2 text-[9px] font-bold uppercase tracking-widest text-gray-500 hover:text-black shrink-0 relative">
-                <div className="relative">
-                  <Heart size={14} className={wishlistCount > 0 ? "fill-red-400 text-red-400" : ""} />
-                  {wishlistCount > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-black text-white text-[7px] w-3.5 h-3.5 rounded-full flex items-center justify-center border border-white font-black">
-                      {wishlistCount}
-                    </span>
-                  )}
-                </div>
-                Wishlist
-              </button>
-              <button onClick={onOpenPromos} className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-gray-500 shrink-0"><Tag size={14} /> Promos</button>
-              <button onClick={onOpenWhatsNew} className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-gray-500 shrink-0"><Sparkles size={14} /> New</button>
-            </div>
-          )}
-        </div>
+            {/* X Button  */}
+            <button 
+              onClick={() => {setIsSearchOpen(false); setSearchQuery('');}}
+              className="absolute right-8 p-2 hover:rotate-90 transition-transform duration-300"
+            >
+              <X size={24} strokeWidth={1.5} />
+            </button>
+          </div>
+        ) : (
+          /*  */
+          <div className="hidden md:flex gap-10 items-center animate-in fade-in duration-500">
+            <button onClick={onOpenWishlist} className="group flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-black transition-all relative">
+              <div className="relative">
+                <Heart size={16} className={wishlistCount > 0 ? "fill-red-400 text-red-400" : "group-hover:scale-110 transition-transform"} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-black text-white text-[7px] min-w-[14px] h-[14px] rounded-full flex items-center justify-center border border-white font-black px-0.5">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+              Wishlist
+            </button>
+            <button onClick={onOpenPromos} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-black transition-all"><Tag size={16} /> Promos</button>
+            <button onClick={onOpenWhatsNew} className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 hover:text-black transition-all"><Sparkles size={16} /> New</button>
+          </div>
+        )}
 
-        {/* RIGHT SIDE: Search Icon & Cart */}
-        <div className="flex-1 flex items-center justify-end gap-4">
+        {/* Icons  */}
+        <div className="flex-1 flex items-center justify-end gap-6">
           {!isSearchOpen && (
-            <button onClick={() => setIsSearchOpen(true)} className="p-1">
-              <Search size={20} />
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2 hover:scale-110 transition-transform"
+            >
+              <Search size={22} />
             </button>
           )}
           
-          <button onClick={onOpenCart} className="relative p-1">
-            <ShoppingBag size={20} />
+          <button onClick={onOpenCart} className="relative p-2 hover:scale-110 transition-transform">
+            <ShoppingBag size={22} />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-black text-white text-[8px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold border border-white">
+              <span className="absolute top-1 right-1 bg-black text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold border border-white">
                 {cartCount}
               </span>
             )}
