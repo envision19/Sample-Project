@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import ProductGrid from './components/ProductGrid';
 import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
-import { X } from 'lucide-react'; // Make sure lucide-react is installed
 
 const products = [
   { id: 1, name: 'Lunar Chronograph', price: 420, category: 'Accessories', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800' },
@@ -52,7 +51,6 @@ export default function App() {
     const shopSection = document.getElementById('shop');
     if (shopSection) {
       shopSection.scrollIntoView({ behavior: 'smooth' });
-      alert("Check out our Spring 2026 Collection below!");
     }
   };
 
@@ -83,55 +81,23 @@ export default function App() {
   });
 
   return (
-  <div className="min-h-screen bg-white text-black font-sans relative">
-    <Navbar 
-      wishlistCount={wishlist.length}
-      cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
-      onOpenWishlist={handleOpenWishlist}
-      onOpenPromos={handlePromos}
-      onOpenWhatsNew={handleWhatsNew}
-      onOpenCart={() => setIsCartOpen(true)}
-      isSearchOpen={isSearchOpen}
-      setIsSearchOpen={setIsSearchOpen}
-      currency={currency}
-      setCurrency={setCurrency}
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
+    <div className="min-h-screen bg-white text-black font-sans relative">
+      <Navbar 
+        wishlistCount={wishlist.length}
+        cartCount={cart.reduce((sum, item) => sum + item.quantity, 0)}
+        onOpenWishlist={handleOpenWishlist}
+        onOpenPromos={handlePromos}
+        onOpenWhatsNew={handleWhatsNew}
+        onOpenCart={() => setIsCartOpen(true)}
+        isSearchOpen={isSearchOpen}
+        setIsSearchOpen={setIsSearchOpen}
+        currency={currency}
+        setCurrency={setCurrency}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
 
-      {/* SEARCH OVERLAY  */}
-      {isSearchOpen && (
-        <div className="fixed inset-0 bg-white/98 backdrop-blur-sm z-[100] flex flex-col animate-in fade-in duration-300">
-    {/* Header of Search */}
-    <div className="flex justify-between items-center px-8 py-6">
-      <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">Search</span>
-      <button onClick={() => setIsSearchOpen(false)} className="p-2 hover:opacity-50 transition-opacity">
-        <X size={20} strokeWidth={1.5} />
-      </button>
-    </div>
-
-    {/* Search Input Area */}
-    <div className="flex-1 flex flex-col items-center justify-center px-6">
-      <div className="w-full max-w-xl">
-        <input 
-          autoFocus
-          type="text" 
-          placeholder="What are you looking for?"
-          className="w-full pb-4 text-xl md:text-2xl font-light tracking-tight outline-none border-b border-gray-100 placeholder:text-gray-300 text-center uppercase"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <div className="mt-6 flex justify-center gap-8">
-           <p className="text-[9px] font-bold uppercase tracking-widest text-gray-300">
-             Results: {filteredProducts.length}
-           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-      )}
-      
-      <main>
+      <main className="pt-20"> {/* pt-20 keeps content from hiding under the fixed Navbar */}
         <Hero />
 
         {/* Philosophy Section */}
