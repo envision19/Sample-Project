@@ -18,6 +18,7 @@ export default function App() {
   const [currency, setCurrency] = useState('USD');
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('ALL ITEMS');
   
   const exchangeRate = 56.50;
