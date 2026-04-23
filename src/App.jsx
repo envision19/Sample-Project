@@ -96,29 +96,36 @@ export default function App() {
         setIsSearchOpen={setIsSearchOpen}
       />
 
-      {/* 2. FULL SCREEN SEARCH OVERLAY (Fixed Layout Fix) */}
+      {/* SEARCH OVERLAY  */}
       {isSearchOpen && (
-        <div className="fixed inset-0 bg-white z-[100] flex flex-col animate-in fade-in zoom-in duration-200">
-          <div className="flex justify-between items-center px-6 py-8 border-b border-gray-100">
-            <span className="text-[10px] font-bold uppercase tracking-widest">Search Collection</span>
-            <button onClick={() => setIsSearchOpen(false)} className="hover:rotate-90 transition-transform">
-              <X size={24} />
-            </button>
-          </div>
-          <div className="flex-1 flex flex-col items-center justify-center px-6">
-            <input 
-              autoFocus
-              type="text" 
-              placeholder="Start typing..."
-              className="w-full max-w-4xl text-4xl md:text-7xl font-black uppercase tracking-tighter outline-none border-none placeholder:text-gray-100"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <p className="mt-8 text-gray-400 text-xs font-medium uppercase tracking-[0.3em]">
-              Found {filteredProducts.length} Results
-            </p>
-          </div>
+        <div className="fixed inset-0 bg-white/98 backdrop-blur-sm z-[100] flex flex-col animate-in fade-in duration-300">
+    {/* Header of Search */}
+    <div className="flex justify-between items-center px-8 py-6">
+      <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">Search</span>
+      <button onClick={() => setIsSearchOpen(false)} className="p-2 hover:opacity-50 transition-opacity">
+        <X size={20} strokeWidth={1.5} />
+      </button>
+    </div>
+
+    {/* Search Input Area */}
+    <div className="flex-1 flex flex-col items-center justify-center px-6">
+      <div className="w-full max-w-xl">
+        <input 
+          autoFocus
+          type="text" 
+          placeholder="What are you looking for?"
+          className="w-full pb-4 text-xl md:text-2xl font-light tracking-tight outline-none border-b border-gray-100 placeholder:text-gray-300 text-center uppercase"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <div className="mt-6 flex justify-center gap-8">
+           <p className="text-[9px] font-bold uppercase tracking-widest text-gray-300">
+             Results: {filteredProducts.length}
+           </p>
         </div>
+      </div>
+    </div>
+  </div>
       )}
       
       <main>

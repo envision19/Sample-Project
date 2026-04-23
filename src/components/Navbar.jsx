@@ -14,13 +14,13 @@ const Navbar = ({
     <header className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
       <nav className="flex items-center justify-between px-4 py-4 max-w-7xl mx-auto w-full">
         
-        {/* 1. LEFT SIDE: Logo */}
+        {/* Logo */}
         <div className="flex-1 text-xl font-black tracking-tighter">
           ENVISION
         </div>
 
-        {/* 2. MIDDLE: Actions (Wishlist, Promos, What's New) */}
-        {/* 'overflow-x-auto no-scrollbar' allows swiping on mobile if the screen is too narrow */}
+        {/* Wishlist, Promos, What's New */}
+        
         <div className="flex gap-4 md:gap-8 items-center overflow-x-auto no-scrollbar px-4">
           <button 
             onClick={onOpenWishlist}
