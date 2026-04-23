@@ -16,31 +16,38 @@ const Navbar = ({
   setSearchQuery
 }) => {
   return (
-    <header className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-[100] border-b border-gray-100">
+    <header className="fixed top-0 left-0 w-full bg-white z-[100] border-b border-gray-100">
       <nav className="flex items-center justify-between px-4 py-4 max-w-7xl mx-auto w-full h-16">
         
-        {/* LOGO - Hides when searching */}
+        {/* LEFT SIDE: Currency & Logo */}
         {!isSearchOpen && (
-          <div className="flex-1 text-xl font-black tracking-tighter animate-in fade-in duration-300">
-            ENVISION
+          <div className="flex-1 flex items-center gap-4 animate-in fade-in duration-300">
+            <button 
+              onClick={() => setCurrency(currency === 'USD' ? 'PHP' : 'USD')}
+              className="text-[10px] font-black tracking-widest hover:text-gray-400 transition-colors shrink-0"
+            >
+              PHP/USD
+            </button>
+            <div className="text-xl font-black tracking-tighter">
+              ENVISION
+            </div>
           </div>
         )}
 
-        {/* MIDDLE SECTION */}
+        {/* MIDDLE SECTION: Inline Search Line */}
         <div className={`flex items-center transition-all duration-300 ${isSearchOpen ? 'flex-1' : 'flex-none'}`}>
           {isSearchOpen ? (
-            /* INLINE SEARCH LINE */
             <div className="flex items-center w-full gap-4 animate-in slide-in-from-right-4 duration-300 border-b border-black pb-1">
               <Search size={16} />
               <input 
                 autoFocus
                 type="text"
-                placeholder="SEARCH COLLECTION..."
+                placeholder="SEARCH..."
                 className="w-full bg-transparent outline-none text-xs font-bold tracking-widest uppercase"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button onClick={() => {setIsSearchOpen(false); setSearchQuery('');}} className="p-1 hover:rotate-90 transition-transform">
+              <button onClick={() => {setIsSearchOpen(false); setSearchQuery('');}} className="p-1">
                 <X size={16} />
               </button>
             </div>
@@ -64,20 +71,12 @@ const Navbar = ({
           )}
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="flex-1 flex items-center justify-end gap-3 md:gap-6">
+        {/* RIGHT SIDE: Search Icon & Cart */}
+        <div className="flex-1 flex items-center justify-end gap-4">
           {!isSearchOpen && (
-            <>
-              {/* RESTORED CURRENCY STYLE */}
-              <button 
-                onClick={() => setCurrency(currency === 'USD' ? 'PHP' : 'USD')}
-                className="text-[10px] font-black tracking-widest hover:underline transition-all"
-              >
-                {currency}
-              </button>
-
-              <button onClick={() => setIsSearchOpen(true)} className="p-1"><Search size={20} /></button>
-            </>
+            <button onClick={() => setIsSearchOpen(true)} className="p-1">
+              <Search size={20} />
+            </button>
           )}
           
           <button onClick={onOpenCart} className="relative p-1">
