@@ -80,14 +80,16 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
       <Navbar 
-        currency={currency} 
-        setCurrency={setCurrency} 
-        cartCount={cart.reduce((acc, item) => acc + item.quantity, 0)}
-        wishlistCount={wishlist.length}
-        onOpenCart={() => setIsCartOpen(true)} 
-        onOpenWishlist={handleOpenWishlist}
-        onOpenPromos={handlePromos}
-        onOpenWhatsNew={handleWhatsNew}
+    
+          currency={currency}
+          setCurrency={setCurrency}
+          cartCount={cart.length}
+          wishlistCount={wishlist.length} // Make sure this variable exists
+          onOpenCart={() => setIsCartOpen(true)}
+          onOpenWishlist={() => setIsWishlistOpen(true)} // Check if you have this state
+          onOpenPromos={() => setIsPromosOpen(true)}
+          onOpenWhatsNew={() => setIsWhatsNewOpen(true)}
+
       />
       
       <main>
