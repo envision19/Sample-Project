@@ -114,6 +114,24 @@ export default function App() {
           </div>
         </section>
 
+              <section className="pt-20 pb-10 px-6">
+        <div className="max-w-7xl mx-auto border-b border-gray-100 pb-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400 mb-3">
+                Curated Selection
+              </p>
+              <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase">
+                Featured <span className="text-gray-300">Objects</span>
+              </h2>
+            </div>
+            <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest max-w-[200px] leading-relaxed">
+              A collection of pieces that redefine the boundary between art and utility.
+            </p>
+          </div>
+        </div>
+      </section>
+
         {/* Product Grid Section */}
         <div id="shop" className="max-w-7xl mx-auto px-6 py-12">
           <ProductGrid 
