@@ -46,7 +46,7 @@ const Navbar = ({
         {/* CENTER: Search Bar OR Badge Links */}
         <div className="flex-1 flex justify-center items-center min-w-0">
           {isSearchOpen ? (
-            <div className="flex items-center w-full max-w-md animate-in fade-in slide-in-from-top-1 duration-300 border-b border-black pb-1">
+            <div className="flex items-center w-full max-w-md animate-in fade-in slide-in-from-top-1 duration-300 border-b border-black pb-1 mx-2">
               <Search size={16} className="mr-2 text-gray-400 shrink-0" />
               <input 
                 autoFocus
@@ -61,20 +61,20 @@ const Navbar = ({
               </button>
             </div>
           ) : (
-            /* Notification-style Badges for Promos and New */
-            <div className="hidden lg:flex gap-6 items-center">
-              <button onClick={onOpenPromos} className="group relative flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full hover:bg-black hover:text-white transition-all">
+            /* Links visible on mobile, hiding only during search */
+            <div className="flex gap-4 md:gap-8 items-center animate-in fade-in duration-500">
+              <button onClick={onOpenPromos} className="group relative flex items-center gap-1.5 px-2 md:px-3 py-1 bg-gray-50 rounded-full hover:bg-black hover:text-white transition-all">
                 <Tag size={12} className="text-black group-hover:text-white" />
-                <span className="text-[9px] font-black uppercase tracking-widest">Promos</span>
+                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest">Promos</span>
                 <span className="absolute -top-1 -right-1 flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                 </span>
               </button>
 
-              <button onClick={onOpenWhatsNew} className="group relative flex items-center gap-2 px-3 py-1 bg-gray-50 rounded-full hover:bg-black hover:text-white transition-all">
+              <button onClick={onOpenWhatsNew} className="group relative flex items-center gap-1.5 px-2 md:px-3 py-1 bg-gray-50 rounded-full hover:bg-black hover:text-white transition-all">
                 <Sparkles size={12} className="text-black group-hover:text-white" />
-                <span className="text-[9px] font-black uppercase tracking-widest">What's New</span>
+                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest">New</span>
                 <span className="absolute -top-1 -right-1 flex h-2 w-2">
                    <span className="animate-pulse relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>

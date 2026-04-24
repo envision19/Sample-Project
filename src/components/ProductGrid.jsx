@@ -49,16 +49,16 @@ const ProductGrid = ({
                   onClick={() => onToggleWishlist(product)} 
                   className="absolute top-3 right-3 p-1.5 bg-white/80 backdrop-blur-sm rounded-full z-10 transition-all shadow-sm"
                 >
-                  <Heart size={16} className={isWishlisted ? "fill-red-400 text-red-400" : "text-black hover:text-red-400"} />
+                  <Heart size={14} className={isWishlisted ? "fill-red-400 text-red-400" : "text-black hover:text-red-400"} />
                 </button>
 
-                {/* THE MINIMALIST + ICON (Desktop only, subtle overlay) */}
+                
                 <div className="hidden md:flex absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex-items-center justify-center">
                   <button 
                     onClick={() => onAddToCart(product)} 
-                    className="p-4 bg-white/90 backdrop-blur-sm rounded-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl"
+                    className="absolute bottom-3 right-3 w-8 h-8 bg-black rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform z-10"
                   >
-                    <Plus size={24} className="text-black" />
+                    <Plus size={18} className="text-white" />
                   </button>
                 </div>
               </div>
