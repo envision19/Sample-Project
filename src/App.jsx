@@ -6,10 +6,10 @@ import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
 
 const products = [
-  { id: 1, name: 'Lunar Chronograph', price: 420, category: 'Accessories', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800' },
-  { id: 2, name: 'Arc Chair', price: 850, category: 'Furniture', image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&q=80&w=800' },
-  { id: 3, name: 'Telephone', price: 120, category: 'Accessories', image: 'https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&q=80&w=800' },
-  { id: 4, name: 'Vortex Speaker', price: 299, category: 'Accessories', image: 'https://images.unsplash.com/photo-1543512214-318c7553f230?auto=format&fit=crop&q=80&w=800' },
+  { id: 1, name: 'Lunar Chronograph', price: 420, category: 'Accessories', image: 'https://images.pexels.com/photos/13007642/pexels-photo-13007642.jpeg' },
+  { id: 2, name: 'Arc Chair', price: 850, category: 'Furniture', image: 'https://images.pexels.com/photos/12269762/pexels-photo-12269762.jpeg' },
+  { id: 3, name: 'Heritage Phone', price: 120, category: 'Accessories', image: 'https://images.pexels.com/photos/13734676/pexels-photo-13734676.jpeg' },
+  { id: 4, name: 'Vortex Speaker', price: 299, category: 'Accessories', image: 'https://images.pexels.com/photos/14309812/pexels-photo-14309812.jpeg' },
 ];
 
 export default function App() {
